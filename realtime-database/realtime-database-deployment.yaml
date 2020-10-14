@@ -1,0 +1,240 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    io.bp.service: realtime-database
+  name: realtime-database
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      io.bp.service: realtime-database
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.bp.service: realtime-database
+    spec:
+      containers:
+      - args:
+        - rethinkdb
+        - --initial-password
+        - ""
+        - --bind
+        - all
+        - -d
+        - /data
+        env:
+        - name: API_ADMIN_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              key: API_ADMIN_PASSWORD
+              name: realtime-database-env
+        - name: API_ADMIN_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              key: API_ADMIN_USERNAME
+              name: realtime-database-env
+        - name: API_PORT
+          valueFrom:
+            configMapKeyRef:
+              key: API_PORT
+              name: realtime-database-env
+        - name: AUTHENTICATION_API_URL
+          valueFrom:
+            configMapKeyRef:
+              key: AUTHENTICATION_API_URL
+              name: realtime-database-env
+        - name: AUTH_API_TOKEN
+          valueFrom:
+            configMapKeyRef:
+              key: AUTH_API_TOKEN
+              name: realtime-database-env
+        - name: AUTH_API_URL
+          valueFrom:
+            configMapKeyRef:
+              key: AUTH_API_URL
+              name: realtime-database-env
+        - name: CLIENT_ID
+          valueFrom:
+            configMapKeyRef:
+              key: CLIENT_ID
+              name: realtime-database-env
+        - name: CLIENT_SECRET
+          valueFrom:
+            configMapKeyRef:
+              key: CLIENT_SECRET
+              name: realtime-database-env
+        - name: DATABASE_HOST
+          valueFrom:
+            configMapKeyRef:
+              key: DATABASE_HOST
+              name: realtime-database-env
+        - name: DATABASE_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              key: DATABASE_PASSWORD
+              name: realtime-database-env
+        - name: DATABASE_PORT
+          valueFrom:
+            configMapKeyRef:
+              key: DATABASE_PORT
+              name: realtime-database-env
+        - name: DATABASE_USER
+          valueFrom:
+            configMapKeyRef:
+              key: DATABASE_USER
+              name: realtime-database-env
+        - name: MAILER_FROM
+          valueFrom:
+            configMapKeyRef:
+              key: MAILER_FROM
+              name: realtime-database-env
+        - name: MAILER_HOST
+          valueFrom:
+            configMapKeyRef:
+              key: MAILER_HOST
+              name: realtime-database-env
+        - name: MAILER_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              key: MAILER_PASSWORD
+              name: realtime-database-env
+        - name: MAILER_PORT
+          valueFrom:
+            configMapKeyRef:
+              key: MAILER_PORT
+              name: realtime-database-env
+        - name: MAILER_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              key: MAILER_USERNAME
+              name: realtime-database-env
+        - name: MEDIA_API_URL
+          valueFrom:
+            configMapKeyRef:
+              key: MEDIA_API_URL
+              name: realtime-database-env
+        - name: MEDIA_DATABASE_URL
+          valueFrom:
+            configMapKeyRef:
+              key: MEDIA_DATABASE_URL
+              name: realtime-database-env
+        - name: MESSENGER_DATABASE_DB
+          valueFrom:
+            configMapKeyRef:
+              key: MESSENGER_DATABASE_DB
+              name: realtime-database-env
+        - name: MESSENGER_PORT
+          valueFrom:
+            configMapKeyRef:
+              key: MESSENGER_PORT
+              name: realtime-database-env
+        - name: MESSENGER_SOCKET_PORT
+          valueFrom:
+            configMapKeyRef:
+              key: MESSENGER_SOCKET_PORT
+              name: realtime-database-env
+        - name: NGINX_HOST
+          valueFrom:
+            configMapKeyRef:
+              key: NGINX_HOST
+              name: realtime-database-env
+        - name: PLATFORM_URL
+          valueFrom:
+            configMapKeyRef:
+              key: PLATFORM_URL
+              name: realtime-database-env
+        - name: PROFILE_API_URL
+          valueFrom:
+            configMapKeyRef:
+              key: PROFILE_API_URL
+              name: realtime-database-env
+        - name: PROFILE_DATABASE_URL
+          valueFrom:
+            configMapKeyRef:
+              key: PROFILE_DATABASE_URL
+              name: realtime-database-env
+        - name: REALTIME_DATABASE_HOST
+          valueFrom:
+            configMapKeyRef:
+              key: REALTIME_DATABASE_HOST
+              name: realtime-database-env
+        - name: REALTIME_DATABASE_NAME
+          valueFrom:
+            configMapKeyRef:
+              key: REALTIME_DATABASE_NAME
+              name: realtime-database-env
+        - name: REALTIME_DATABASE_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              key: REALTIME_DATABASE_PASSWORD
+              name: realtime-database-env
+        - name: REALTIME_DATABASE_PORT
+          valueFrom:
+            configMapKeyRef:
+              key: REALTIME_DATABASE_PORT
+              name: realtime-database-env
+        - name: REALTIME_DATABASE_USER
+          valueFrom:
+            configMapKeyRef:
+              key: REALTIME_DATABASE_USER
+              name: realtime-database-env
+        - name: REDIS_HOST
+          valueFrom:
+            configMapKeyRef:
+              key: REDIS_HOST
+              name: realtime-database-env
+        - name: REDIS_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              key: REDIS_PASSWORD
+              name: realtime-database-env
+        - name: REDIS_PORT
+          valueFrom:
+            configMapKeyRef:
+              key: REDIS_PORT
+              name: realtime-database-env
+        - name: SECRET_KEY
+          valueFrom:
+            configMapKeyRef:
+              key: SECRET_KEY
+              name: realtime-database-env
+        - name: SECURITY_DATABASE_DB
+          valueFrom:
+            configMapKeyRef:
+              key: SECURITY_DATABASE_DB
+              name: realtime-database-env
+        - name: SECURITY_PORT
+          valueFrom:
+            configMapKeyRef:
+              key: SECURITY_PORT
+              name: realtime-database-env
+        - name: SOCIAL_DATABASE_DB
+          valueFrom:
+            configMapKeyRef:
+              key: SOCIAL_DATABASE_DB
+              name: realtime-database-env
+        - name: SOCKET_PORT
+          valueFrom:
+            configMapKeyRef:
+              key: SOCKET_PORT
+              name: realtime-database-env
+        image: rethinkdb:2.4.1
+        name: realtime-database
+        ports:
+        - containerPort: 28015
+        - containerPort: 8080
+        resources: {}
+        volumeMounts:
+        - mountPath: /data
+          name: realtime-database-claim0
+      restartPolicy: Always
+      volumes:
+      - name: realtime-database-claim0
+        persistentVolumeClaim:
+          claimName: realtime-database-claim0
+status: {}

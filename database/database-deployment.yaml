@@ -1,0 +1,231 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    io.bp.service: database
+  name: database
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      io.bp.service: database    
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.bp.service: database
+    spec:
+      containers:
+      - env:
+        - name: API_ADMIN_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              key: API_ADMIN_PASSWORD
+              name: database-env
+        - name: API_ADMIN_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              key: API_ADMIN_USERNAME
+              name: database-env
+        - name: API_PORT
+          valueFrom:
+            configMapKeyRef:
+              key: API_PORT
+              name: database-env
+        - name: AUTHENTICATION_API_URL
+          valueFrom:
+            configMapKeyRef:
+              key: AUTHENTICATION_API_URL
+              name: database-env
+        - name: AUTH_API_TOKEN
+          valueFrom:
+            configMapKeyRef:
+              key: AUTH_API_TOKEN
+              name: database-env
+        - name: AUTH_API_URL
+          valueFrom:
+            configMapKeyRef:
+              key: AUTH_API_URL
+              name: database-env
+        - name: CLIENT_ID
+          valueFrom:
+            configMapKeyRef:
+              key: CLIENT_ID
+              name: database-env
+        - name: CLIENT_SECRET
+          valueFrom:
+            configMapKeyRef:
+              key: CLIENT_SECRET
+              name: database-env
+        - name: DATABASE_HOST
+          valueFrom:
+            configMapKeyRef:
+              key: DATABASE_HOST
+              name: database-env
+        - name: DATABASE_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              key: DATABASE_PASSWORD
+              name: database-env
+        - name: DATABASE_PORT
+          valueFrom:
+            configMapKeyRef:
+              key: DATABASE_PORT
+              name: database-env
+        - name: DATABASE_USER
+          valueFrom:
+            configMapKeyRef:
+              key: DATABASE_USER
+              name: database-env
+        - name: MAILER_FROM
+          valueFrom:
+            configMapKeyRef:
+              key: MAILER_FROM
+              name: database-env
+        - name: MAILER_HOST
+          valueFrom:
+            configMapKeyRef:
+              key: MAILER_HOST
+              name: database-env
+        - name: MAILER_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              key: MAILER_PASSWORD
+              name: database-env
+        - name: MAILER_PORT
+          valueFrom:
+            configMapKeyRef:
+              key: MAILER_PORT
+              name: database-env
+        - name: MAILER_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              key: MAILER_USERNAME
+              name: database-env
+        - name: MAILER_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              key: MAILER_USERNAME
+              name: database-env
+        - name: MEDIA_API_URL
+          valueFrom:
+            configMapKeyRef:
+              key: MEDIA_API_URL
+              name: database-env
+        - name: MEDIA_DATABASE_URL
+          valueFrom:
+            configMapKeyRef:
+              key: MEDIA_DATABASE_URL
+              name: database-env
+        - name: MESSENGER_DATABASE_DB
+          valueFrom:
+            configMapKeyRef:
+              key: MESSENGER_DATABASE_DB
+              name: database-env
+        - name: MESSENGER_PORT
+          valueFrom:
+            configMapKeyRef:
+              key: MESSENGER_PORT
+              name: database-env
+        - name: MESSENGER_SOCKET_PORT
+          valueFrom:
+            configMapKeyRef:
+              key: MESSENGER_SOCKET_PORT
+              name: database-env
+        - name: MYSQL_DATABASE
+        - name: MYSQL_PASSWORD
+        - name: MYSQL_ROOT_PASSWORD
+        - name: MYSQL_USER
+        - name: NGINX_HOST
+          valueFrom:
+            configMapKeyRef:
+              key: NGINX_HOST
+              name: database-env
+        - name: PLATFORM_URL
+          valueFrom:
+            configMapKeyRef:
+              key: PLATFORM_URL
+              name: database-env
+        - name: PROFILE_API_URL
+          valueFrom:
+            configMapKeyRef:
+              key: PROFILE_API_URL
+              name: database-env
+        - name: PROFILE_DATABASE_URL
+          valueFrom:
+            configMapKeyRef:
+              key: PROFILE_DATABASE_URL
+              name: database-env
+        - name: REALTIME_DATABASE_HOST
+          valueFrom:
+            configMapKeyRef:
+              key: REALTIME_DATABASE_PASSWORD
+              name: database-env
+        - name: REALTIME_DATABASE_PORT
+          valueFrom:
+            configMapKeyRef:
+              key: REALTIME_DATABASE_PORT
+              name: database-env
+        - name: REALTIME_DATABASE_USER
+          valueFrom:
+            configMapKeyRef:
+              key: REALTIME_DATABASE_USER
+              name: database-env
+        - name: REDIS_HOST
+          valueFrom:
+            configMapKeyRef:
+              key: REDIS_HOST
+              name: database-env
+        - name: REDIS_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              key: REDIS_PASSWORD
+              name: database-env
+        - name: REDIS_PORT
+          valueFrom:
+            configMapKeyRef:
+              key: REDIS_PORT
+              name: database-env
+        - name: SECRET_KEY
+          valueFrom:
+            configMapKeyRef:
+              key: SECRET_KEY
+              name: database-env
+        - name: SECURITY_DATABASE_DB
+          valueFrom:
+            configMapKeyRef:
+              key: SECURITY_DATABASE_DB
+              name: database-env
+        - name: SECURITY_PORT
+          valueFrom:
+            configMapKeyRef:
+              key: SECURITY_PORT
+              name: database-env
+        - name: SOCIAL_DATABASE_DB
+          valueFrom:
+            configMapKeyRef:
+              key: SOCIAL_DATABASE_DB
+              name: database-env
+        - name: SOCKET_PORT
+          valueFrom:
+            configMapKeyRef:
+              key: SOCKET_PORT
+              name: database-env
+        image: mariadb:10.5.3-focal
+        name: database
+        ports:
+        - containerPort: 3306
+        resources: {}
+        volumeMounts:
+        - mountPath: /var/lib/mysql
+          name: database-claim0
+      restartPolicy: Always
+      volumes:
+      - name: database-claim0
+        persistentVolumeClaim:
+          claimName: database-claim0
+status: {}
+   

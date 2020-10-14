@@ -1,0 +1,253 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    io.bp.service: messenger
+  name: messenger
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      io.bp.service: messenger
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.bp.service: messenger
+    spec:
+      containers:
+      - args:
+        - /wait.sh
+        - ':'
+        - --
+        - sh
+        - -c
+        - yarn && yarn start:dev
+        env:
+        - name: API_ADMIN_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              key: API_ADMIN_PASSWORD
+              name: messenger-env
+        - name: API_ADMIN_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              key: API_ADMIN_USERNAME
+              name: messenger-env
+        - name: API_PORT
+          valueFrom:
+            configMapKeyRef:
+              key: API_PORT
+              name: messenger-env
+        - name: AUTHENTICATION_API_URL
+          valueFrom:
+            configMapKeyRef:
+              key: AUTHENTICATION_API_URL
+              name: messenger-env
+        - name: AUTH_API_TOKEN
+          valueFrom:
+            configMapKeyRef:
+              key: AUTH_API_TOKEN
+              name: messenger-env
+        - name: AUTH_API_URL
+          valueFrom:
+            configMapKeyRef:
+              key: AUTH_API_URL
+              name: messenger-env
+        - name: CLIENT_ID
+          valueFrom:
+            configMapKeyRef:
+              key: CLIENT_ID
+              name: messenger-env
+        - name: CLIENT_SECRET
+          valueFrom:
+            configMapKeyRef:
+              key: CLIENT_SECRET
+              name: messenger-env
+        - name: DATABASE_DB
+        - name: DATABASE_HOST
+          valueFrom:
+            configMapKeyRef:
+              key: DATABASE_HOST
+              name: messenger-env
+        - name: DATABASE_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              key: DATABASE_PASSWORD
+              name: messenger-env
+        - name: DATABASE_PORT
+          valueFrom:
+            configMapKeyRef:
+              key: DATABASE_PORT
+              name: messenger-env
+        - name: DATABASE_USER
+          valueFrom:
+            configMapKeyRef:
+              key: DATABASE_USER
+              name: messenger-env
+        - name: MAILER_FROM
+          valueFrom:
+            configMapKeyRef:
+              key: MAILER_FROM
+              name: messenger-env
+        - name: MAILER_HOST
+          valueFrom:
+            configMapKeyRef:
+              key: MAILER_HOST
+              name: messenger-env
+        - name: MAILER_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              key: MAILER_PASSWORD
+              name: messenger-env
+        - name: MAILER_PORT
+          valueFrom:
+            configMapKeyRef:
+              key: MAILER_PORT
+              name: messenger-env
+        - name: MAILER_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              key: MAILER_USERNAME
+              name: messenger-env
+        - name: MEDIA_API_URL
+          valueFrom:
+            configMapKeyRef:
+              key: MEDIA_API_URL
+              name: messenger-env
+        - name: MEDIA_DATABASE_URL
+          valueFrom:
+            configMapKeyRef:
+              key: MEDIA_DATABASE_URL
+              name: messenger-env
+        - name: MESSENGER_DATABASE_DB
+          valueFrom:
+            configMapKeyRef:
+              key: MESSENGER_DATABASE_DB
+              name: messenger-env
+        - name: MESSENGER_PORT
+          valueFrom:
+            configMapKeyRef:
+              key: MESSENGER_PORT
+              name: messenger-env
+        - name: MESSENGER_SOCKET_PORT
+          valueFrom:
+            configMapKeyRef:
+              key: MESSENGER_SOCKET_PORT
+              name: messenger-env
+        - name: NGINX_HOST
+          valueFrom:
+            configMapKeyRef:
+              key: NGINX_HOST
+              name: messenger-env
+        - name: PLATFORM_URL
+          valueFrom:
+            configMapKeyRef:
+              key: PLATFORM_URL
+              name: messenger-env
+        - name: PROFILE_API_URL
+          valueFrom:
+            configMapKeyRef:
+              key: PROFILE_API_URL
+              name: messenger-env
+        - name: PROFILE_DATABASE_URL
+          valueFrom:
+            configMapKeyRef:
+              key: PROFILE_DATABASE_URL
+              name: messenger-env
+        - name: REALTIME_DATABASE_HOST
+          valueFrom:
+            configMapKeyRef:
+              key: REALTIME_DATABASE_HOST
+              name: messenger-env
+        - name: REALTIME_DATABASE_NAME
+          valueFrom:
+            configMapKeyRef:
+              key: REALTIME_DATABASE_NAME
+              name: messenger-env
+        - name: REALTIME_DATABASE_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              key: REALTIME_DATABASE_PASSWORD
+              name: messenger-env
+        - name: REALTIME_DATABASE_PORT
+          valueFrom:
+            configMapKeyRef:
+              key: REALTIME_DATABASE_PORT
+              name: messenger-env
+        - name: REALTIME_DATABASE_USER
+          valueFrom:
+            configMapKeyRef:
+              key: REALTIME_DATABASE_USER
+              name: messenger-env
+        - name: REDIS_HOST
+          valueFrom:
+            configMapKeyRef:
+              key: REDIS_HOST
+              name: messenger-env
+        - name: REDIS_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              key: REDIS_PASSWORD
+              name: messenger-env
+        - name: REDIS_PORT
+          valueFrom:
+            configMapKeyRef:
+              key: REDIS_PORT
+              name: messenger-env
+        - name: SECRET_KEY
+          valueFrom:
+            configMapKeyRef:
+              key: SECRET_KEY
+              name: messenger-env
+        - name: SECURITY_DATABASE_DB
+          valueFrom:
+            configMapKeyRef:
+              key: SECURITY_DATABASE_DB
+              name: messenger-env
+        - name: SECURITY_PORT
+          valueFrom:
+            configMapKeyRef:
+              key: SECURITY_PORT
+              name: messenger-env
+        - name: SOCIAL_DATABASE_DB
+          valueFrom:
+            configMapKeyRef:
+              key: SOCIAL_DATABASE_DB
+              name: messenger-env
+        - name: SOCKET_PORT
+          valueFrom:
+            configMapKeyRef:
+              key: SOCKET_PORT
+              name: messenger-env
+        image: node:12.18.1-alpine
+        name: messenger-api
+        resources: {}
+        volumeMounts:
+        - mountPath: /app
+          name: messenger-claim0
+        - mountPath: /app/.env
+          name: messenger-claim1
+        - mountPath: /app/src/config/keys
+          name: messenger-claim2
+        - mountPath: /wait.sh
+          name: messenger-claim3
+        workingDir: /app
+      restartPolicy: Always
+      volumes:
+      - name: messenger-claim0
+        persistentVolumeClaim:
+          claimName: messenger-claim0
+      - name: messenger-claim1
+        persistentVolumeClaim:
+          claimName: messenger-claim1
+      - name: messenger-claim2
+        persistentVolumeClaim:
+          claimName: messenger-claim2
+      - name: messenger-claim3
+        persistentVolumeClaim:
+          claimName: messenger-claim3
+status: {}

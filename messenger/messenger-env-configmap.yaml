@@ -1,0 +1,47 @@
+apiVersion: v1
+data:
+  API_ADMIN_PASSWORD: adminTestPassword
+  API_ADMIN_USERNAME: adminTest@yopmail.com
+  API_PORT: "4000"
+  AUTH_API_TOKEN: elIyaFFnVjdqUmR1NFk0V3FGWUtUZ3lobTJSVnBROk1QU1JrM1lwdkhURmtkc3I1MzlBYXNad2pjSktTUA==
+  AUTH_API_URL: https://oauth-api-qualif.linkinnov.com
+  AUTHENTICATION_API_URL: http://nginx
+  CLIENT_ID: zR2hQgV7jRdu4Y4WqFYKTgyhm2RVpQ
+  CLIENT_SECRET: MPSRk3YpvHTFkdsr539AasZwjcJKSP
+  DATABASE_HOST: 34.68.204.228
+  DATABASE_PASSWORD: STL+rlS1iYuj0x79*t
+  DATABASE_PORT: "80"
+  DATABASE_USER: root
+  MAILER_FROM: dev.test@linkinnov.com
+  MAILER_HOST: outlook.office365.com
+  MAILER_PASSWORD: BackofficeLKV!
+  MAILER_PORT: "587"
+  MAILER_USERNAME: dev.test@linkinnov.com
+  MEDIA_API_URL: https://media-api-qualif.linkinnov.com
+  MEDIA_DATABASE_URL: mongodb://main_admin:mongodb@35.241.244.242:27017/gestion-media-mcs?authSource=admin
+  MESSENGER_DATABASE_DB: messenger
+  MESSENGER_PORT: "4000"
+  MESSENGER_SOCKET_PORT: "4001"
+  NGINX_HOST: api-qualif.linkinnov.com
+  PLATFORM_URL: https://qualif.linkinnov.com
+  PROFILE_API_URL: https://profile-api-qualif.linkinnov.com
+  PROFILE_DATABASE_URL: mongodb://main_admin:mongodb@35.241.244.242:27017/gestion-profil-mcs?authSource=admin
+  REALTIME_DATABASE_HOST: 34.68.204.228
+  REALTIME_DATABASE_NAME: messenger
+  REALTIME_DATABASE_PASSWORD: STL+rlS1iYuj0x79*t
+  REALTIME_DATABASE_PORT: "28016"
+  REALTIME_DATABASE_USER: admin
+  REDIS_HOST: redis
+  REDIS_PASSWORD: $+chocLX3kLc_LTuga!=
+  REDIS_PORT: "6379"
+  SECRET_KEY: cc84625b627fbf9f3a935bd5b9c92a59c72314a3
+  SECURITY_DATABASE_DB: security
+  SECURITY_PORT: "4000"
+  SOCIAL_DATABASE_DB: social
+  SOCKET_PORT: "4001"
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  labels:
+    io.bp.service: messenger-env
+  name: messenger-env
