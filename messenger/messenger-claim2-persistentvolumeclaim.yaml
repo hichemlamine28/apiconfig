@@ -9,7 +9,6 @@ spec:
     storage: 100Mi
   hostPath:
     path: ./keys
----
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
