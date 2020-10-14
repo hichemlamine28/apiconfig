@@ -9,7 +9,6 @@ spec:
     storage: 100Mi
   hostPath:
     path: ./api/social
----
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
