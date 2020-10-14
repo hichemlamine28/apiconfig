@@ -21,8 +21,8 @@ spec:
       - args:
         - redis-server
         - --requirepass
-      - name: session
         image: redis:6.0.5-alpine
+        name: session
         ports:
         - containerPort: 6379
         resources: {}
