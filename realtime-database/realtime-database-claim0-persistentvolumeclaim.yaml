@@ -9,7 +9,6 @@ spec:
     storage: 100Mi
   hostPath:
     path: /realtime
----
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
