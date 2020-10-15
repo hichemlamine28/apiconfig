@@ -1,7 +1,8 @@
 #!/bin/bash
 echo "Lancement des operations ---database--- sur KUBERNETES ..."
 kubectl apply -f apiconfig/database/database-env-configmap.yaml
-kubectl apply -f apiconfig/database/database-claim0-persistentvolumeclaim.yaml
+kubectl apply -f apiconfig/database/database-pv0.yaml
+kubectl apply -f apiconfig/database/database-pvc0.yaml
 kubectl apply -f apiconfig/database/database-service.yaml
 kubectl apply -f apiconfig/database/database-deployment.yaml
 echo "Lancement des operations ---messenger--- sur KUBERNETES ..."
